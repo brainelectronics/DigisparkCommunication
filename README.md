@@ -5,3 +5,7 @@ A simple Python script to communicate with the Digispark via USB
 - run the listInfos script for further infos of the device
 - check out the talker.py script for simple reference how to communicate with the Digispark (upload Digispark_simple_com.ino first)
 - use listAllDevices.py to list all devices and return their name and manufacturer name
+
+You need to install pyusb and libsub:
+sudo pip install pyusb --pre
+sudo pip libusb1 or easy_install libusb1
