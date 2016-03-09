@@ -8,4 +8,4 @@ A simple Python script to communicate with the Digispark via USB
 
 You need to install pyusb and libsub:<br>
 sudo pip install pyusb --pre<br>
-sudo pip libusb1 or easy_install libusb1
+sudo pip install libusb1 or easy_install libusb1
