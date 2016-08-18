@@ -53,6 +53,10 @@ class UsbLister(object):
 			# time.sleep(0.5)
 
 	def solveDeviceName(self, idVen, idProd):
+			self.getDeviceName(self.myDict[aDev][0],self.myDict[aDev][1])
+			# time.sleep(0.5)
+
+	def getDeviceName(self, idVen, idProd):
 		"""
 		request device name and manufacturer name if available
 		"""
@@ -88,6 +92,7 @@ if __name__ == '__main__':
 	tmpDict = theDevices.getDevices()
 	print "Device dict: %s" %tmpDict
 	print "Device dict keys: %s" %tmpDict.keys()
+
 
 # sample output
 """

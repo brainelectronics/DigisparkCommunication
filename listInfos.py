@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-# ----------------------------------------------------------------------------
 # listInfos.py
 # Copyright 2016 brainelectronics
 # Scharpf, Jonas
@@ -13,13 +12,14 @@ import sys
 # find our device
 # dev = usb.core.find(idVendor=0x16c0, idProduct=0x5056)
 dev = usb.core.find(idVendor=0x1a86, idProduct=0x7523)
-
+# dev = usb.core.find(idVendor=0x16c0, idProduct=0x05df)
+ 
 # was it found?
 if dev is None:
 	raise ValueError('Device not found')
 
 # configuration will be the active one
-# dev.set_configuration()
+dev.set_configuration()
 print "Device found!"
 print dev
 

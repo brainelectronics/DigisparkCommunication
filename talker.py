@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-# ----------------------------------------------------------------------------
 # talker.py
 # Copyright 2016 brainelectronics
 # Scharpf, Jonas
@@ -140,7 +139,6 @@ class DigiSparkUsbDevice(object):
 		"""
 		self._set_config(REG_VERSION, to_bcd2(version))
 
-
 	def _transfer(self, request_type, request, index, value):
 		return self.device.ctrl_transfer(
 			bmRequestType=request_type, 
@@ -171,7 +169,15 @@ if __name__ == '__main__':
 	myName = ""
 	# theDevice = DigiSparkUsbDevice(idVendor=0x16c0, idProduct=0x486f)
 	theDevice = DigiSparkUsbDevice(idVendor=0x16c0, idProduct=0x5056)
+	theDevice.write(ord("s"))   # sends '115' aka 's' to start
 
+	# you have to know exactly how much data is returned if try is not used
+	for x in range(0, 30):
+		try:
+			recDat = chr(theDevice.read())	# convert received to char
+			myString += recDat	# append char to previous received
+			myArray.append(recDat)	# append to list
+		except Exception as e:	# break here
 
 	# theDevice = DigiSparkUsbDevice(idVendor=0x10C4, idProduct=0xea69)
 	# theDevice = DigiSparkUsbDevice(idVendor=0x1a86, idProduct=0x7523)
@@ -191,36 +197,6 @@ if __name__ == '__main__':
 	# theDevice.write(ord("s"))   # sends '115' aka 's' to simulate
 	theDevice.write(ord("m"))   # sends '109' aka 'm' to measure
 	# theDevice.write(ord("n"))   # sends '110' aka 'n' to name
-
-	# you have to know exactly how much data is returned if try is not used
-	for x in range(0, 30):
-		try:
-			recDat = chr(theDevice.read())	# convert received to char
-			myString += recDat	# append char to previous received
-			myArray.append(recDat)	# append to list
-		except Exception as e:	# break here
-			# print e
-			break
-	# output data
-	print myArray
-	print "Returned value: %s" %myString
-	# currentValueRead = float(myString.rstrip())
-	# print "Received*2: %1.3f" %(currentValueRead*2.0)
-	# """
-
-	# theDevice.write(ord("n"))   # sends '110' aka 'n' to get name
-	# # you have to know exactly how much data is returned if try is not used
-	# for x in range(0, 30):
-	# 	try:
-	# 		recDat = chr(theDevice.read())	# convert received to char
-	# 		myName += recDat	# append char to previous received
-	# 		myNameArray.append(recDat)	# append to list
-	# 	except Exception as e:	# break here
-	# 		break
-	
-	# # output data
-	# print myNameArray
-	# print "Returned Name: %s" %myName
 
 
 	"""
